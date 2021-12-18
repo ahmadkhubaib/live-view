@@ -12,6 +12,6 @@ defmodule PentoWeb.WrongLive do
   end
 
   def time() do
-    DateTime.utc_now() |> utc_now()
+    DateTime.utc_now() |> to_string()
   end
 end
