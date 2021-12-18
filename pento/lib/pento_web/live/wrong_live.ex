@@ -8,7 +8,7 @@ defmodule PentoWeb.WrongLive do
 
   @impl true
   def handle_event("guess", %{"number" => number}, socket) do
-    {:ok, assign(socket, message: "Your guess: #{number}. Wrong. Guess again. ", score: socket.assigns.score - 1)}
+    {:noreply, assign(socket, message: "Your guess: #{number}. Wrong. Guess again. ", score: socket.assigns.score - 1)}
   end
 
   def time() do
