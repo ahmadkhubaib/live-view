@@ -28,5 +28,9 @@
 
   <%= hidden_input f, :image_upload %>
 
+  <%= for entry <- @uploads.image.entries do %> <p>
+    <%= entry.client_name %> - <%= entry.progress %>% </p>
+  <% end %>
+
   <%= submit "Save", phx_disable_with: "Saving..." %>
 </form>
