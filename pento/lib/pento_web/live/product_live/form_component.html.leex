@@ -22,5 +22,11 @@
   <%= number_input f, :sku %>
   <%= error_tag f, :sku %>
 
+  <div phx-drop-target="<%= @uploads.image.ref %>">
+    <%= live_file_input @uploads.image %>
+  </div>
+
+  <%= f hidden_input, :image_upload %>
+
   <%= submit "Save", phx_disable_with: "Saving..." %>
 </form>
