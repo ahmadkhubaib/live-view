@@ -25,7 +25,7 @@ defmodule PentoWeb.PromoLive do
 
   def handle_event(
     "validate",
-    %{"recipient" => recipient_params} = params,
+    %{"recipient" => recipient_params} = _params,
     %{assigns: %{recipient: recipient}} = socket
     ) do
 
@@ -43,7 +43,7 @@ defmodule PentoWeb.PromoLive do
 
     def handle_event(
       "save",
-      %{"recipient" => recipient_params} = params,
+      %{"recipient" => recipient_params} = _params,
       %{assigns: %{recipient: recipient}} = socket
     ) do
 
