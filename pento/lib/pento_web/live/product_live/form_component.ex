@@ -84,7 +84,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
     |> assign(:changeset, Ecto.Changeset.put_change(changeset, key, value))
   end
 
-  defp upload_static_file(%{path: path} = test, socket) do
+  defp upload_static_file(%{path: path}, socket) do
     # Plug in your production image file persistence implementation here!
     dest = Path.join("priv/static/images", Path.basename(path))
     File.cp!(path, dest)
