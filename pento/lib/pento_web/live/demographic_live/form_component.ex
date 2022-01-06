@@ -20,20 +20,10 @@ defmodule PentoWeb.DemographicLive.FormComponent do
     {:noreply, save_demographic(demographic, socket)}
   end
 
-  @impl true
-  def handle_info({:demographic_created, demographic}, socket) do
-    {:noreply, handle_demographic_created(demographic, socket)}
-  end
-
-  defp handle_demographic_created(demographic, socket) do
-    socket
-    |> put_flash(:info, "Demographic Created")
-    |> assign(:demographic, demographic)
-  end
-
   defp save_demographic(demographic, socket) do
     case Survey.create_demographic(demographic) do
       {:ok, new_demographic} ->
+        # this send(self() {:event, state}) will be handled by parent i.e SurveyLive
         send(self(), {:demographic_created, new_demographic})
         socket
       {:error, %Ecto.Changeset{} = changeset} ->
