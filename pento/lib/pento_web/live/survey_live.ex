@@ -13,6 +13,17 @@ defmodule PentoWeb.SurveyLive do
     }
   end
 
+  @impl true
+  def handle_info({:demographic_created, demographic}, socket) do
+    {:noreply, handle_demographic_created(demographic, socket)}
+  end
+
+  defp handle_demographic_created(demographic, socket) do
+    socket
+    |> put_flash(:info, "Demographic Created")
+    |> assign(:demographic, demographic)
+  end
+
 
   defp assign_demographic(%{assigns: %{current_user: current_user}} = socket) do
     assign(socket, :demographic, Survey.get_demographic_by_user(current_user))
