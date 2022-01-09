@@ -10,6 +10,7 @@ defmodule PentoWeb.SurveyLive do
       socket
       |> assign_user(user_token)
       |> assign_demographic()
+      |> assign_products()
     }
   end
 
@@ -35,5 +36,9 @@ defmodule PentoWeb.SurveyLive do
       :current_user,
       fn -> Accounts.get_user_by_session_token(user_token) end
     )
+  end
+
+  defp assign_products(%{assigns: %{current_user: current_user}} = socket) do
+    assign(socket, :products, Survey.get_products_ratings_by_user(current_user))
   end
 end
