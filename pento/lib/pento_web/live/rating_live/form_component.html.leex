@@ -1,1 +1,24 @@
-<h1>Hello FormComponent</h1>
+<div class="survey-component-container">
+  <section class="row">
+    <h4><%= @product.name %></h4>
+  </section>
+  <section class="row">
+    <%= f = form_for  @changeset, "#",
+        phx_submit: "save",
+        phx_target: @myself,
+        phx_change: "validate",
+        id: @id
+    %>
+      <section class="row">
+        <%= label f, :stars %>
+        <%= select f, :stars, 5..1 %>
+        <%= error_tag f, :stars %>
+
+        <%= hidden_input f, :product_id %>
+        <%= hidden_input f, :user_id %>
+
+        <%= submit "Save", phx_disable_with: "Saving..." %>
+      </section>
+    </form>
+  </section>
+</div>
