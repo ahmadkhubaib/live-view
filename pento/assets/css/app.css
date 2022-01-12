@@ -1,5 +1,10 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
+@import "variables";
+@import "@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/scss/regular";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
