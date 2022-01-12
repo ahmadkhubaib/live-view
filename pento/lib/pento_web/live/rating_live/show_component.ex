@@ -1,7 +1,7 @@
 defmodule PentoWeb.RatingLive.ShowComponent do
   use PentoWeb, :live_component
 
-  def render_rating_stars(stars) do
+  def render_rating_stars([%Pento.Survey.Rating{stars: stars}]) do
     filled_stars(stars)
     |> Enum.concat(unfilled_stars(stars))
     |> Enum.join(" ")
