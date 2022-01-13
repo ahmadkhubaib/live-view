@@ -108,7 +108,7 @@ defmodule Pento.Catalog do
   end
 
   def products_with_average_ratings() do
-    Product.Query.with_average_ratings()
+    Product.Query.with_average_rating()
     |> Repo.all()
   end
 end
