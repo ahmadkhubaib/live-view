@@ -5,7 +5,7 @@ defmodule Pento.Promo do
     Recipient.changeset(recipient, attrs)
   end
 
-  def send_promo(recipient, attrs) do
+  def send_promo(_recipient, _attrs) do
     IO.inspect("++++++++++Promo code Sent++++++++++")
   end
 end
