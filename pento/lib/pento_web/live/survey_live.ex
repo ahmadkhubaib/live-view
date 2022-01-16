@@ -1,7 +1,7 @@
 defmodule PentoWeb.SurveyLive do
   use PentoWeb, :live_view
 
-  alias Pento.{Catalog, Survey, Accounts}
+  alias Pento.{Survey, Accounts}
 
   @impl true
   def mount(_params, %{"user_token" => user_token} = _session, socket) do
