@@ -6,7 +6,7 @@ defmodule Pento.Survey.Rating.Query do
   def base, do: Rating
 
   def preload_user(user) do
-    base
+    base()
     |> for_user(user)
   end
 
