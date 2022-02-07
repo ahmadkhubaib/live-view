@@ -16,7 +16,7 @@ defmodule PentoWeb.SurveyResultsLiveTest do
     password: "testtesttest"
   }
 
-  @create_user_attrs2 %{
+  @create_user2_attrs %{
     email: "t@t.com",
     password: "testtesttest"
   }
@@ -26,22 +26,22 @@ defmodule PentoWeb.SurveyResultsLiveTest do
     year_of_birth: DateTime.utc_now.year - 15
   }
 
-  @create_demographic_attrs2 %{
+  @create_demographic_over18 %{
     gender: "female",
     year_of_birth: DateTime.utc_now.year - 30
   }
 
-  defp product_fixture do
+  def product_fixture do
     {:ok, product} = Catalog.create_product(@create_product_attrs)
     product
   end
 
-  defp user_fixture(attrs \\ @create_user_attrs) do
+  def user_fixture(attrs \\ @create_user_attrs) do
     {:ok, user} = Accounts.register_user(attrs)
     user
   end
 
-  defp demographic_fixture(user, attrs \\ @create_demographic_attrs) do
+  def demographic_fixture(user, attrs \\ @create_demographic_attrs) do
     attrs =
       attrs
       |> Map.merge(%{user_id: user.id})
@@ -49,7 +49,7 @@ defmodule PentoWeb.SurveyResultsLiveTest do
     demographic
   end
 
-  defp rating_fixture(stars, user, product) do
+  def rating_fixture(stars, user, product) do
     {:ok, rating} = Survey.create_rating(
       %{
         stars: stars,
@@ -60,17 +60,17 @@ defmodule PentoWeb.SurveyResultsLiveTest do
     rating
   end
 
-  defp create_product(_), do: %{product: product_fixture()}
+  def create_product(_), do: %{product: product_fixture()}
 
-  defp create_user(_), do: %{user: user_fixture()}
+  def create_user(_), do: %{user: user_fixture()}
 
-  defp create_socket(_), do: %{socket: %Phoenix.LiveView.Socket{}}
+  def create_socket(_), do: %{socket: %Phoenix.LiveView.Socket{}}
 
-  defp create_demographic(user), do: %{demographic: demographic_fixture(user)}
+  def create_demographic(user), do: %{demographic: demographic_fixture(user)}
 
-  defp create_rating(stars, user, product), do: %{rating: rating_fixture(stars, user, product)}
+  def create_rating(stars, user, product), do: %{rating: rating_fixture(stars, user, product)}
 
-  defp assert_keys(socket, key, value) do
+  def assert_keys(socket, key, value) do
     assert socket.assigns[key] == value
     socket
   end
@@ -80,8 +80,8 @@ defmodule PentoWeb.SurveyResultsLiveTest do
 
     setup %{user: user} do
       create_demographic(user)
-      user2 = user_fixture(@create_user_attrs2)
-      demographic_fixture(user2, @create_demographic_attrs2)
+      user2 = user_fixture(@create_user2_attrs)
+      demographic_fixture(user2, @create_demographic_over18)
       [user2: user2]
     end
 
